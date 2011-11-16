@@ -12,177 +12,211 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-  -->
+-->
 
-<!--  Note; Version code/name is IOSched version (16), Droidcon Version (01) -->
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Note; Version code/name is IOSched version (16), Droidcon Version (01) -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:installLocation="auto"
+    package="com.novoda.droidcon2011"
     android:versionCode="2011100704"
-    android:versionName="DCUK-2011.04"
-    android:installLocation="auto" package="com.novoda.droidcon2011">
+    android:versionName="DCUK-2011.04" >
 
     <uses-sdk
         android:minSdkVersion="7"
         android:targetSdkVersion="11" />
 
     <permission
-        android:name="com.google.android.apps.iosched.permission.WRITE_SCHEDULE"
-        android:protectionLevel="normal"
+        android:description="@string/permission_write"
         android:label="@string/permission_write"
-        android:description="@string/permission_write" />
+        android:name="com.google.android.apps.iosched.permission.WRITE_SCHEDULE"
+        android:protectionLevel="normal" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.NFC" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" >
+    </uses-permission>
 
     <application
-        android:label="@string/app_name"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
         android:logo="@drawable/title_logo"
-        android:theme="@style/Theme.IOSched"
-        android:hardwareAccelerated="true">
+        android:theme="@style/Theme.IOSched" >
 
         <!-- Activities for both phones and tablets -->
 
         <activity
+            android:label="@string/app_name"
             android:name="com.google.android.apps.iosched.ui.HomeActivity"
-            android:theme="@style/Theme.IOSched.Home"
-            android:label="@string/app_name">
-            <intent-filter>
+            android:theme="@style/Theme.IOSched.Home" >
+            <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.google.android.apps.iosched.ui.BulletinActivity"
-            android:label="@string/title_bulletin" />
-
+            android:label="@string/title_bulletin"
+            android:name="com.google.android.apps.iosched.ui.BulletinActivity" />
         <activity
-            android:name="com.google.android.apps.iosched.ui.TagStreamActivity"
-            android:label="@string/title_tagstream" />
-
+            android:label="@string/title_tagstream"
+            android:name="com.google.android.apps.iosched.ui.TagStreamActivity" />
         <activity
-            android:name="com.google.android.apps.iosched.ui.StarredActivity"
-            android:label="@string/title_starred" />
-
+            android:label="@string/title_starred"
+            android:name="com.google.android.apps.iosched.ui.StarredActivity" />
         <activity
-            android:name="com.google.android.apps.iosched.ui.SearchActivity"
             android:label="@string/title_search"
-            android:launchMode="singleTop">
-            <intent-filter>
+            android:launchMode="singleTop"
+            android:name="com.google.android.apps.iosched.ui.SearchActivity" >
+            <intent-filter >
                 <action android:name="android.intent.action.SEARCH" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable" android:resource="@xml/searchable" />
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
 
         <!-- Phone-only activities -->
 
         <activity
-            android:name="com.google.android.apps.iosched.ui.phone.ScheduleActivity"
-            android:label="@string/title_schedule" />
-
+            android:label="@string/title_schedule"
+            android:name="com.google.android.apps.iosched.ui.phone.ScheduleActivity" />
         <activity
-            android:name="com.google.android.apps.iosched.ui.phone.TracksActivity"
-            android:label="@string/title_tracks">
-            <intent-filter>
+            android:label="@string/title_tracks"
+            android:name="com.google.android.apps.iosched.ui.phone.TracksActivity" >
+            <intent-filter >
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="vnd.android.cursor.dir/vnd.iosched.track" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.google.android.apps.iosched.ui.phone.SessionsActivity"
-            android:label="@string/title_sessions">
-            <intent-filter>
+            android:label="@string/title_sessions"
+            android:name="com.google.android.apps.iosched.ui.phone.SessionsActivity" >
+            <intent-filter >
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.TAB" />
+
                 <data android:mimeType="vnd.android.cursor.dir/vnd.iosched.session" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.google.android.apps.iosched.ui.phone.SessionDetailActivity">
-            <intent-filter>
+        <activity android:name="com.google.android.apps.iosched.ui.phone.SessionDetailActivity" >
+            <intent-filter >
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="vnd.android.cursor.item/vnd.iosched.session" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.google.android.apps.iosched.ui.phone.VendorsActivity"
-            android:label="@string/title_vendors">
-            <intent-filter>
+            android:label="@string/title_vendors"
+            android:name="com.google.android.apps.iosched.ui.phone.VendorsActivity" >
+            <intent-filter >
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.TAB" />
+
                 <data android:mimeType="vnd.android.cursor.dir/vnd.iosched.vendor" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.google.android.apps.iosched.ui.phone.VendorDetailActivity">
-            <intent-filter>
+        <activity android:name="com.google.android.apps.iosched.ui.phone.VendorDetailActivity" >
+            <intent-filter >
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="vnd.android.cursor.item/vnd.iosched.vendor" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.google.android.apps.iosched.ui.phone.MapActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_map"
-            android:configChanges="orientation|keyboardHidden" />
+            android:name="com.google.android.apps.iosched.ui.phone.MapActivity" />
 
         <!-- Tablet-only activities -->
 
         <activity
-            android:name="com.google.android.apps.iosched.ui.tablet.SessionsMultiPaneActivity"
-            android:label="@string/title_sessions" />
+            android:label="@string/title_sessions"
+            android:name="com.google.android.apps.iosched.ui.tablet.SessionsMultiPaneActivity" />
         <activity
-            android:name="com.google.android.apps.iosched.ui.tablet.VendorsMultiPaneActivity"
-            android:label="@string/title_vendors" />
+            android:label="@string/title_vendors"
+            android:name="com.google.android.apps.iosched.ui.tablet.VendorsMultiPaneActivity" />
         <activity
-            android:name="com.google.android.apps.iosched.ui.tablet.ScheduleMultiPaneActivity"
-            android:label="@string/title_schedule" />
+            android:label="@string/title_schedule"
+            android:name="com.google.android.apps.iosched.ui.tablet.ScheduleMultiPaneActivity" />
         <activity
-            android:name="com.google.android.apps.iosched.ui.tablet.MapMultiPaneActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_map"
-            android:configChanges="orientation|keyboardHidden" />
+            android:name="com.google.android.apps.iosched.ui.tablet.MapMultiPaneActivity" />
         <activity
-            android:name="com.google.android.apps.iosched.ui.tablet.NowPlayingMultiPaneActivity"
-            android:label="@string/title_now_playing" />
+            android:label="@string/title_now_playing"
+            android:name="com.google.android.apps.iosched.ui.tablet.NowPlayingMultiPaneActivity" />
 
         <!-- Used for install referrer tracking -->
         <receiver
-            android:name="com.google.android.apps.analytics.AnalyticsReceiver"
-            android:exported="true">
-            <intent-filter>
+            android:exported="true"
+            android:name="com.google.android.apps.analytics.AnalyticsReceiver" >
+            <intent-filter >
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
-        
-        
-        <!-- Countdown widget -->
-		<service	android:name="novoda.droidcon.homewidget.CountdownWidget$Updater"/>
-		<receiver	android:name="novoda.droidcon.homewidget.CountdownWidget"
-					android:process=":otherPrivateProcess"
-					android:label="@string/app_name"
-					android:icon="@drawable/ic_launcher">
-		        <intent-filter>
-		                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-		        </intent-filter>
- 		        <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info" />
-		</receiver>
 
-		<!-- Droidcon About Activity -->
+        <!-- Countdown widget -->
+        <service android:name="novoda.droidcon.homewidget.CountdownWidget$Updater" />
+
+        <receiver
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/app_name"
+            android:name="novoda.droidcon.homewidget.CountdownWidget"
+            android:process=":otherPrivateProcess" >
+            <intent-filter >
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+
+        <!-- Droidcon About Activity -->
         <activity
-            android:name="novoda.droidcon.ui.AboutActivity"
-            android:label="@string/title_about" />
+            android:label="@string/title_about"
+            android:name="novoda.droidcon.ui.AboutActivity" />
+
+        <!-- NFC Share Activity -->
+        <activity
+            android:label="@string/app_name"
+            android:name="com.google.android.apps.iosched.ui.ShareViaNFC"
+            android:screenOrientation="portrait" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- Handle notes detected from outside our application -->
+            <intent-filter >
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
 
         <!-- Other manifest items -->
 
@@ -193,9 +227,9 @@
         <service android:name="com.google.android.apps.iosched.service.SyncService" />
 
         <provider
-            android:name="com.google.android.apps.iosched.provider.ScheduleProvider"
             android:authorities="com.novoda.droidcon2011.iosched"
+            android:name="com.google.android.apps.iosched.provider.ScheduleProvider"
             android:writePermission="com.google.android.apps.iosched.permission.WRITE_SCHEDULE" />
-
     </application>
+
 </manifest>

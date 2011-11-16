@@ -39,4 +39,9 @@
         android:text="@string/btn_announcements"
         android:drawableTop="@drawable/home_btn_announcements" />
 
+    <Button android:id="@+id/home_btn_nfc_share"
+        style="@style/DashboardButton"
+        android:text="Share Contact"
+        android:drawableTop="@drawable/nfc_share" />
+        
 </com.google.android.apps.iosched.ui.widget.DashboardLayout>
